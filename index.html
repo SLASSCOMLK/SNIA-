@@ -42,7 +42,7 @@
   </nav>
 
   <!-- ===== HERO SECTION ===== -->
-  <section class="hero section" id="home">
+  <section class="hero section" id="home" data-theme="light">
     <div class="hero-bg">
       <img src="images/029A7291.jpeg" alt="Awards Stage Background">
       <img src="images/029A7327.jpeg" alt="Awards Stage Background">
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="hero-image">
-        <div class="hero-image-glow"></div>
+
         <div class="hero-image-wrapper trophy-wrapper">
           <div class="rotating-trophy">
             <img src="images/SNIA_Award.png" class="trophy-layer" style="transform: translateZ(0px);">
@@ -119,7 +119,7 @@
   </section>
 
   <!-- ===== ABOUT SECTION ===== -->
-  <section class="about section" id="about">
+  <section class="about section" id="about" data-theme="light">
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
@@ -242,7 +242,7 @@
   </section>
 
   <!-- ===== STATS SECTION ===== -->
-  <section class="stats section reveal-bg" id="stats">
+  <section class="stats section" id="stats" data-theme="light">
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item reveal">
@@ -267,40 +267,53 @@
     </div>
   </section>
 
-  <!-- ===== EVENT HIGHLIGHTS SLIDESHOW ===== -->
-  <section class="slideshow section text-center"
-    style="padding-top: 50px; padding-bottom: 50px; background: var(--bg-primary);">
-    <span class="section-label reveal">Event Highlights</span>
-    <h2 class="section-title reveal delay-1">Unforgettable <span class="highlight">Moments</span></h2>
-    <div class="slideshow-wrapper reveal delay-2">
-      <div class="slideshow-track" style="animation-duration: 40s;">
-        <img src="images/slideshow/029A7482.jpg" alt="Highlight 1">
-        <img src="images/slideshow/029A7546.jpg" alt="Highlight 2">
-        <img src="images/slideshow/029A7703 (1).jpg" alt="Highlight 3">
-        <img src="images/slideshow/1772613771746_029A7320.jpg" alt="Highlight 4">
-        <img src="images/slideshow/1772613771749_029A7323.jpg" alt="Highlight 5">
-        <img src="images/slideshow/1772613771751_029A7349.jpg" alt="Highlight 6">
-        <img src="images/slideshow/Copy of 029A6441.jpg" alt="Highlight 7">
-        <img src="images/slideshow/DSC_1963.jpg" alt="Highlight 8">
-        <img src="images/slideshow/DSC_2045.jpg" alt="Highlight 9">
-        <img src="images/slideshow/DSC_2492.jpg" alt="Highlight 10">
-        <!-- Duplicate for smooth endless looping -->
-        <img src="images/slideshow/029A7482.jpg" alt="Highlight 1">
-        <img src="images/slideshow/029A7546.jpg" alt="Highlight 2">
-        <img src="images/slideshow/029A7703 (1).jpg" alt="Highlight 3">
-        <img src="images/slideshow/1772613771746_029A7320.jpg" alt="Highlight 4">
-        <img src="images/slideshow/1772613771749_029A7323.jpg" alt="Highlight 5">
-        <img src="images/slideshow/1772613771751_029A7349.jpg" alt="Highlight 6">
-        <img src="images/slideshow/Copy of 029A6441.jpg" alt="Highlight 7">
-        <img src="images/slideshow/DSC_1963.jpg" alt="Highlight 8">
-        <img src="images/slideshow/DSC_2045.jpg" alt="Highlight 9">
-        <img src="images/slideshow/DSC_2492.jpg" alt="Highlight 10">
+  <!-- ===== EVENT HIGHLIGHTS CAROUSEL ===== -->
+  <section class="highlights-section section" id="highlights" data-theme="dark">
+    <div class="container text-center">
+      <span class="section-label reveal">Event Highlights</span>
+      <h2 class="section-title reveal delay-1">Unforgettable <span class="highlight">Moments</span></h2>
+      <p class="highlights-subtitle reveal delay-2">SNIA 2025</p>
+
+      <div class="carousel-container reveal delay-3">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="highlightsTrack">
+            <div class="carousel-item">
+              <img src="images/slideshow/029A7482.jpg" alt="SNIA Highlight">
+            </div>
+            <div class="carousel-item">
+              <img src="images/slideshow/029A7546.jpg" alt="SNIA Highlight">
+            </div>
+            <div class="carousel-item">
+              <img src="images/slideshow/029A7703 (1).jpg" alt="SNIA Highlight">
+            </div>
+            <div class="carousel-item">
+              <img src="images/slideshow/DSC_1963.jpg" alt="SNIA Highlight">
+            </div>
+            <div class="carousel-item">
+              <img src="images/slideshow/DSC_2045.jpg" alt="SNIA Highlight">
+            </div>
+            <div class="carousel-item">
+              <img src="images/slideshow/DSC_2492.jpg" alt="SNIA Highlight">
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-btn prev" id="prevHighlight">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn next" id="nextHighlight">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Dots -->
+        <div class="carousel-pagination" id="highlightsDots"></div>
       </div>
     </div>
   </section>
 
   <!-- ===== AWARD CATEGORIES ===== -->
-  <section class="section" id="categories">
+  <section class="section" id="categories" data-theme="light">
     <div class="container text-center">
       <span class="section-label reveal">Award Categories</span>
       <h2 class="section-title reveal delay-1">Compete Across <span class="highlight">Multiple Domains</span></h2>
@@ -454,7 +467,7 @@
   </section>
 
   <!-- ===== HOW TO APPLY ===== -->
-  <section class="apply section" id="apply">
+  <section class="apply section" id="apply" data-theme="light">
     <div class="container">
       <div class="apply-grid">
         <div>
@@ -517,7 +530,7 @@
   </section>
 
   <!-- ===== TESTIMONIALS ===== -->
-  <section class="testimonials section" id="testimonials">
+  <section class="testimonials section" id="testimonials" data-theme="light">
     <div class="container text-center">
       <span class="section-label reveal">Testimonials</span>
       <h2 class="section-title reveal delay-1">What Our <span class="highlight">Winners Say</span></h2>
@@ -605,7 +618,7 @@
   </section>
 
   <!-- ===== PARTNERS ===== -->
-  <section class="partners section reveal-bg" id="partners">
+  <section class="partners section reveal-bg" id="partners" data-theme="dark">
     <div class="container text-center">
       <span class="section-label reveal">Our Partners</span>
       <h2 class="section-title reveal delay-1">Sponsors & <span class="highlight">Partners</span></h2>
@@ -624,36 +637,36 @@
 
       <div class="partners-marquee" style="margin-top: 60px;">
         <div class="marquee-content marquee-left-to-right">
-        <!-- Slide Set 1 -->
-        <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
-            alt="Ministry of Digital Economy"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
-            alt="IEEE Sri Lanka Section"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
-            alt="Ministry of Digital Economy"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
-            alt="IEEE Sri Lanka Section"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
-        <!-- Slide Set 2 (Duplicate for endless loop) -->
-        <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
-            alt="Ministry of Digital Economy"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
-            alt="IEEE Sri Lanka Section"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
-            alt="Ministry of Digital Economy"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
-            alt="IEEE Sri Lanka Section"></div>
-        <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
+          <!-- Slide Set 1 -->
+          <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
+              alt="Ministry of Digital Economy"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
+              alt="IEEE Sri Lanka Section"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
+              alt="Ministry of Digital Economy"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
+              alt="IEEE Sri Lanka Section"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
+          <!-- Slide Set 2 (Duplicate for endless loop) -->
+          <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
+              alt="Ministry of Digital Economy"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
+              alt="IEEE Sri Lanka Section"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/Ministry-of-Digital-Economy-logo.png"
+              alt="Ministry of Digital Economy"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/AMCHAM Logo.png" alt="AMCHAM"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/Hatch.png" alt="Hatch"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/IEEE Sri Lanka Section (logo).png"
+              alt="IEEE Sri Lanka Section"></div>
+          <div class="partner-logo-card"><img src="images/sponsors/TRACE_LOGO_BLUE.png" alt="TRACE"></div>
         </div>
       </div>
       <div class="key-partner-label reveal delay-3" style="margin-top: 30px;">Eco system Partners</div>

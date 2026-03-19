@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initImageAnimations();
   initSpotlightCards();
   initCustomCursor();
+  initHighlightsCarousel();
+  initThemeTransitions();
 });
 
 // ===== NAVBAR SCROLL EFFECT =====
@@ -304,4 +306,127 @@ function initCustomCursor() {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
   });
+}
+
+// ===== HIGHLIGHTS CAROUSEL =====
+function initHighlightsCarousel() {
+  const track = document.getElementById('highlightsTrack');
+  const items = document.querySelectorAll('.carousel-item');
+  const dotsContainer = document.getElementById('highlightsDots');
+  const prevBtn = document.getElementById('prevHighlight');
+  const nextBtn = document.getElementById('nextHighlight');
+  
+  if (!track || items.length === 0) return;
+
+  let currentIndex = 0;
+  const totalItems = items.length;
+  let autoPlayInterval;
+
+  // Create dots
+  items.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.dot');
+
+  function updateCarousel() {
+    items.forEach((item, i) => {
+      item.classList.remove('active', 'prev', 'next');
+      
+      if (i === currentIndex) {
+        item.classList.add('active');
+      } else if (i === (currentIndex - 1 + totalItems) % totalItems) {
+        item.classList.add('prev');
+      } else if (i === (currentIndex + 1) % totalItems) {
+        item.classList.add('next');
+      }
+    });
+
+    // Calculate shift to center the active item
+    const containerWidth = track.parentElement.offsetWidth;
+    const itemWidth = items[0].offsetWidth;
+    const gap = 30; // Matches CSS gap
+    
+    // Total width of one item + its gap
+    const fullItemWidth = itemWidth + gap;
+    
+    // We want the center of the viewport to align with the center of the active item
+    const offset = (containerWidth / 2) - (currentIndex * fullItemWidth) - (itemWidth / 2);
+    
+    track.style.transform = `translateX(${offset}px)`;
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+    resetAutoPlay();
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalItems;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    updateCarousel();
+  }
+
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(nextSlide, 4000);
+  }
+
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    resetAutoPlay();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    prevSlide();
+    resetAutoPlay();
+  });
+
+  // Handle window resize for centering
+  window.addEventListener('resize', updateCarousel);
+
+  // Initialize
+  updateCarousel();
+  resetAutoPlay();
+}
+
+// ===== THEME TRANSITIONS (Smooth Syncing) =====
+function initThemeTransitions() {
+  const sections = document.querySelectorAll('section[data-theme]');
+  
+  const themeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Threshold 0.3 means 30% of the section is visible
+      if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+        const theme = entry.target.getAttribute('data-theme');
+        document.body.setAttribute('data-current-theme', theme);
+        
+        // Sync navbar theme if needed
+        const navbar = document.getElementById('navbar');
+        if (theme === 'dark') {
+          navbar.classList.add('theme-dark');
+        } else {
+          navbar.classList.remove('theme-dark');
+        }
+      }
+    });
+  }, {
+    threshold: [0.3, 0.5, 0.7]
+  });
+
+  sections.forEach(section => themeObserver.observe(section));
 }
