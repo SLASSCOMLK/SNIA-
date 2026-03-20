@@ -1500,7 +1500,7 @@ img {
   left: 50%;
   width: var(--scroll-fill, 0%);
   height: 100%;
-  background: var(--bg-dark-blue);
+  background: #ffffff;
   z-index: -1;
   transform: translateX(-50%);
   transition: width 0.1s ease-out;
@@ -1513,7 +1513,7 @@ img {
 
 .partners.reveal-bg.active .section-title,
 .partners.reveal-bg.active .section-subtitle {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .partners-marquee {
@@ -1561,14 +1561,13 @@ img {
   transition: all 0.4s ease;
 }
 
-/* Specific filter behavior for dark background reveal */
+/* Specific filter behavior for reveal */
 .partners.reveal-bg.active .key-logo-slasscom {
-  /* Removed white filter to keep it in color as requested */
-  filter: drop-shadow(0 10px 20px rgba(255, 255, 255, 0.1));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
 }
 
 .partners.reveal-bg.active .key-logo-ey {
-  filter: brightness(1) drop-shadow(0 10px 20px rgba(255, 255, 255, 0.1));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
 }
 
 .key-partner-label {
@@ -1594,7 +1593,7 @@ img {
 }
 
 .partners.reveal-bg.active .key-partner-separator {
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.15), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(244, 123, 32, 0.15), transparent);
 }
 
 /* Responsive fix for key partners */
@@ -1634,12 +1633,12 @@ img {
 
 .partners-marquee::before {
   left: 0;
-  background: linear-gradient(to right, var(--bg-dark-blue), transparent);
+  background: linear-gradient(to right, #ffffff, transparent);
 }
 
 .partners-marquee::after {
   right: 0;
-  background: linear-gradient(to left, var(--bg-dark-blue), transparent);
+  background: linear-gradient(to left, #ffffff, transparent);
 }
 
 .marquee-left-to-right {
@@ -1683,16 +1682,17 @@ img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(1) opacity(0.5);
+  filter: none;
   transition: all var(--transition-normal);
 }
 
-.partners.reveal-bg.active .partner-logo-card img {
+/* Remove dark mode filter override */
+/* .partners.reveal-bg.active .partner-logo-card img {
   filter: brightness(0) invert(1) opacity(0.7);
-}
+} */
 
 .partner-logo-card:hover img {
-  filter: grayscale(0) brightness(1) opacity(1) !important;
+  filter: grayscale(1) brightness(0) opacity(1) !important;
 }
 
 
