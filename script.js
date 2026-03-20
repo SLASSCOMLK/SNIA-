@@ -430,3 +430,19 @@ function initThemeTransitions() {
 
   sections.forEach(section => themeObserver.observe(section));
 }
+
+// ===== WHAT SNIA DOES (Accordion) =====
+function toggleWWDO(card) {
+  const allCards = document.querySelectorAll('.wwdo-card');
+  const isActive = card.classList.contains('active');
+
+  // Collapse all cards
+  allCards.forEach(c => {
+    c.classList.remove('active');
+  });
+
+  // If clicked card wasn't active, expand it
+  if (!isActive) {
+    card.classList.add('active');
+  }
+}

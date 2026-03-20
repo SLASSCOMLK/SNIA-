@@ -2121,85 +2121,161 @@ img {
   }
 }
 
-/* ===== WHAT WE DO SECTION ===== */
-.wwdo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
-}
-
-.wwdo-item {
-  background: var(--bg-card);
-  border-radius: 16px;
-  padding: 40px 30px;
-  text-align: left;
-  border: 1px solid var(--border-card);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* ===== WHAT WE DO SECTION (REDESIGN) ===== */
+.what-we-do {
+  background: var(--bg-primary);
+  padding: 100px 0;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  z-index: 1;
 }
 
-.wwdo-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+.wwdo-connector-container {
+  max-width: 1000px;
+  margin: 0 auto -20px;
+  height: 100px;
+  position: relative;
+  z-index: 0;
+}
+
+.wwdo-svg {
   width: 100%;
-  height: 0%;
-  background: linear-gradient(135deg, rgba(244, 123, 32, 0.05), rgba(253, 184, 19, 0.1));
-  transition: height 0.4s ease;
-  z-index: -1;
-}
-
-.wwdo-item:hover {
-  transform: translateY(-10px);
-  border-color: rgba(244, 123, 32, 0.3);
-  box-shadow: 0 15px 35px rgba(244, 123, 32, 0.1);
-}
-
-.wwdo-item:hover::before {
   height: 100%;
 }
 
-.wwdo-icon {
-  width: 60px;
-  height: 60px;
+.wwdo-line {
+  fill: none;
+  stroke: #e0e0e0;
+  stroke-width: 1.5;
+  stroke-dasharray: 4;
+}
+
+.wwdo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+.wwdo-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 12px;
+  padding: 0;
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  height: fit-content;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.wwdo-card:hover {
+  border-color: rgba(244, 123, 32, 0.3);
+  box-shadow: 0 8px 25px rgba(244, 123, 32, 0.08);
+  transform: translateY(-2px);
+}
+
+.wwdo-card-header {
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.wwdo-card-icon {
+  width: 44px;
+  height: 44px;
   background: rgba(244, 123, 32, 0.1);
-  color: var(--accent-gold);
-  border-radius: 50%;
+  color: #F47B20;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  transition: all 0.4s ease;
-}
-
-.wwdo-item:hover .wwdo-icon {
-  background: var(--accent-gold);
-  color: #fff;
-  transform: rotateY(180deg);
-}
-
-.wwdo-content h3 {
   font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.wwdo-card-title h3 {
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 12px;
-  transition: color 0.3s ease;
+  margin-bottom: 4px;
 }
 
-.wwdo-item:hover .wwdo-content h3 {
-  color: var(--accent-gold-dark);
+.wwdo-preview {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  transition: opacity 0.3s ease;
 }
 
-.wwdo-content p {
-  font-size: 0.95rem;
+.wwdo-card.active .wwdo-preview {
+  opacity: 0;
+}
+
+.wwdo-card-arrow {
+  margin-left: auto;
+  color: var(--text-muted);
+  transition: transform 0.4s ease;
+  font-size: 0.9rem;
+}
+
+.wwdo-card.active .wwdo-card-arrow {
+  transform: rotate(180deg);
+  color: #F47B20;
+}
+
+.wwdo-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wwdo-card-inner {
+  padding: 0 24px 24px 76px; /* Align with title (icon 44px + gap 16px + offset) */
+}
+
+.wwdo-card-inner p {
+  font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  margin: 0;
+}
+
+.wwdo-card.active {
+  border-color: #F47B20;
+  box-shadow: 0 12px 30px rgba(244, 123, 32, 0.12);
+}
+
+.wwdo-card.active .wwdo-card-body {
+  max-height: 200px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 991px) {
+  .wwdo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wwdo-connector-container {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .wwdo-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .wwdo-card-header {
+    padding: 20px;
+  }
+  .wwdo-card-inner {
+    padding: 0 20px 20px 20px;
+  }
 }
 
 /* ===== MODERN CATEGORIES OVERRIDE ===== */

@@ -181,60 +181,125 @@
   </section>
 
   <!-- ===== WHAT WE DO SECTION ===== -->
-  <section class="what-we-do section" id="what-we-do" style="background: var(--bg-primary); padding-top: 60px;">
+  <section class="what-we-do section" id="what-we-do">
     <div class="container text-center">
       <span class="section-label reveal">Our Focus</span>
       <h2 class="section-title reveal delay-1">What SNIA <span class="highlight">Does</span></h2>
-      <p class="section-subtitle reveal delay-2">Driving Sri Lanka’s transition from service-based to product
-        innovation.</p>
+      <p class="section-subtitle reveal delay-2">Driving Sri Lanka's transition from service-based to product innovation.</p>
 
-      <div class="wwdo-grid mt-5">
-        <div class="wwdo-item reveal delay-1">
-          <div class="wwdo-icon"><i class="fas fa-search"></i></div>
-          <div class="wwdo-content">
-            <h3>1. Discover & Recognise</h3>
-            <p>Identify innovations from schools, universities, startups, and enterprises across Sri Lanka.</p>
+      <div class="wwdo-connector-container reveal delay-3">
+        <svg class="wwdo-svg" viewBox="0 0 1000 120" preserveAspectRatio="none">
+          <!-- Main drop -->
+          <path d="M500,0 L500,30" class="wwdo-line"></path>
+          <!-- Horizontal branch -->
+          <path d="M166,30 L834,30" class="wwdo-line"></path>
+          <!-- Vertical drops to top row cards -->
+          <path d="M166,30 L166,80" class="wwdo-line"></path>
+          <path d="M500,30 L500,80" class="wwdo-line"></path>
+          <path d="M834,30 L834,80" class="wwdo-line"></path>
+        </svg>
+      </div>
+
+      <div class="wwdo-grid reveal delay-3">
+        <!-- Card 1 -->
+        <div class="wwdo-card" onclick="toggleWWDO(this)">
+          <div class="wwdo-card-header">
+            <div class="wwdo-card-icon"><i class="fas fa-search"></i></div>
+            <div class="wwdo-card-title">
+              <h3>Discover & Recognise</h3>
+              <p class="wwdo-preview">Identify regional innovations...</p>
+            </div>
+            <div class="wwdo-card-arrow"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="wwdo-card-body">
+            <div class="wwdo-card-inner">
+              <p>Identify innovations from schools, universities, startups, and enterprises across Sri Lanka, ensuring no great idea goes unnoticed.</p>
+            </div>
           </div>
         </div>
 
-        <div class="wwdo-item reveal delay-2">
-          <div class="wwdo-icon"><i class="fas fa-clipboard-check"></i></div>
-          <div class="wwdo-content">
-            <h3>2. Evaluate & Validate</h3>
-            <p>Entries are assessed through a multi-stage process:<br><em>Initial screening → Provincial review →
-                National finals</em></p>
+        <!-- Card 2 -->
+        <div class="wwdo-card" onclick="toggleWWDO(this)">
+          <div class="wwdo-card-header">
+            <div class="wwdo-card-icon"><i class="fas fa-clipboard-check"></i></div>
+            <div class="wwdo-card-title">
+              <h3>Evaluate & Validate</h3>
+              <p class="wwdo-preview">A multi-stage assessment...</p>
+            </div>
+            <div class="wwdo-card-arrow"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="wwdo-card-body">
+            <div class="wwdo-card-inner">
+              <p>Entries are assessed through a rigorous multi-stage process: Initial screening → Provincial review → National finals by industry experts.</p>
+            </div>
           </div>
         </div>
 
-        <div class="wwdo-item reveal delay-3">
-          <div class="wwdo-icon"><i class="fas fa-glass-cheers"></i></div>
-          <div class="wwdo-content">
-            <h3>3. Celebrate & Amplify</h3>
-            <p>Winners are celebrated at ITC Ratnadipa, Colombo.</p>
+        <!-- Card 3 -->
+        <div class="wwdo-card" onclick="toggleWWDO(this)">
+          <div class="wwdo-card-header">
+            <div class="wwdo-card-icon"><i class="fas fa-award"></i></div>
+            <div class="wwdo-card-title">
+              <h3>Celebrate & Amplify</h3>
+              <p class="wwdo-preview">Rewarding ICT excellence...</p>
+            </div>
+            <div class="wwdo-card-arrow"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="wwdo-card-body">
+            <div class="wwdo-card-inner">
+              <p>Winners are celebrated at a grand ceremony at ITC Ratnadipa, Colombo, giving them national recognition and media exposure.</p>
+            </div>
           </div>
         </div>
 
-        <div class="wwdo-item reveal delay-4">
-          <div class="wwdo-icon"><i class="fas fa-lightbulb"></i></div>
-          <div class="wwdo-content">
-            <h3>4. Inspire the Next Wave</h3>
-            <p>Encouraging the next generation of innovators and entrepreneurs.</p>
+        <!-- Card 4 -->
+        <div class="wwdo-card" onclick="toggleWWDO(this)">
+          <div class="wwdo-card-header">
+            <div class="wwdo-card-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="wwdo-card-title">
+              <h3>Inspire the Next Wave</h3>
+              <p class="wwdo-preview">Empowering young minds...</p>
+            </div>
+            <div class="wwdo-card-arrow"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="wwdo-card-body">
+            <div class="wwdo-card-inner">
+              <p>Encouraging the next generation of innovators and entrepreneurs through school and university category highlights.</p>
+            </div>
           </div>
         </div>
 
-        <div class="wwdo-item reveal delay-5">
-          <div class="wwdo-icon"><i class="fas fa-certificate"></i></div>
-          <div class="wwdo-content">
-            <h3>5. Build IP Ownership</h3>
-            <p>Promoting Sri Lanka’s transition from service-based to product innovation.</p>
+        <!-- Card 5 -->
+        <div class="wwdo-card" onclick="toggleWWDO(this)">
+          <div class="wwdo-card-header">
+            <div class="wwdo-card-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="wwdo-card-title">
+              <h3>Build IP Ownership</h3>
+              <p class="wwdo-preview">Securing Sri Lanka's future...</p>
+            </div>
+            <div class="wwdo-card-arrow"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="wwdo-card-body">
+            <div class="wwdo-card-inner">
+              <p>Promoting Sri Lanka's transition from a service-based economy to a product-based one by fostering local intellectual property.</p>
+            </div>
           </div>
         </div>
 
-        <div class="wwdo-item reveal delay-6">
-          <div class="wwdo-icon"><i class="fas fa-chart-line"></i></div>
-          <div class="wwdo-content">
-            <h3>6. Attract Investment</h3>
-            <p>Highlighting high-potential innovations to investors and accelerating startup growth.</p>
+        <!-- Card 6 -->
+        <div class="wwdo-card" onclick="toggleWWDO(this)">
+          <div class="wwdo-card-header">
+            <div class="wwdo-card-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="wwdo-card-title">
+              <h3>Attract Investment</h3>
+              <p class="wwdo-preview">Connecting to capital...</p>
+            </div>
+            <div class="wwdo-card-arrow"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="wwdo-card-body">
+            <div class="wwdo-card-inner">
+              <p>Highlighting high-potential innovations to local and global investors, accelerating startup growth and scaling.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -535,7 +600,7 @@
           <div class="cta-buttons" style="margin-top: 40px;" id="stepDetailCTA">
             <a href="https://awards.judgify.me/snia2026" target="_blank" class="btn-primary">Go to Judgify</a>
           </div>
-          <p class="cta-deadline" style="margin-top: 20px;">Application deadline: <strong>15 March 2026</strong></p>
+          <p class="cta-deadline" style="margin-top: 20px;">Application deadline: <strong>31 March 2026</strong></p>
         </div>
       </div>
     </div>
@@ -638,8 +703,8 @@
         </div>
         <div class="key-partner-separator"></div>
         <div class="key-partner-item">
-          <img src="images/sponsors/EY_Logo_Beam_RGB-OffBlack-Yellow.png" alt="EY" class="key-logo-ey">
-          <span class="key-partner-label">Title Sponsor</span>
+          <img src="images/sponsors/Deloitte Logo[62]_page-0001.png" alt="EY" class="key-logo-ey">
+          <span class="key-partner-label">Process and Governance Partner</span>
         </div>
       </div>
 
