@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initImageAnimations();
   initSpotlightCards();
-  initCustomCursor();
+  // initCustomCursor(); // Disabled custom cursor animation
   initHighlightsCarousel();
   initThemeTransitions();
 });
@@ -446,3 +446,26 @@ function toggleWWDO(card) {
     card.classList.add('active');
   }
 }
+
+// ===== TESTIMONIAL MODAL HELPER FUNCTIONS =====
+window.openTestimonial = function(btn) {
+  const item = btn.closest('.marquee-item');
+  const fullText = item.querySelector('.full-quote-text').textContent.trim();
+  const name = item.querySelector('.name').textContent.trim();
+  const role = item.querySelector('.role').textContent.trim();
+
+  document.getElementById('modalText').innerHTML = `"${fullText}"`;
+  document.getElementById('modalAuthorName').textContent = name;
+  document.getElementById('modalAuthorRole').textContent = role;
+
+  const modal = document.getElementById('testimonialModal');
+  modal.classList.add('active');
+  
+  // Pause the custom cursor hover style since modal covers screen
+  const cursor = document.getElementById('customCursor');
+  if (cursor) cursor.classList.remove('hover');
+};
+
+window.closeTestimonialModal = function() {
+  document.getElementById('testimonialModal').classList.remove('active');
+};
