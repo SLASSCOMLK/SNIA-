@@ -1520,6 +1520,61 @@ img {
   margin-top: 20px;
 }
 
+/* Top Tier Styling */
+.top-tier {
+  gap: 120px;
+}
+
+/* Category Tier Styling */
+.category-tier {
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-logos-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.category-logo {
+  height: 80px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.04));
+  transition: transform 0.3s ease;
+}
+
+.category-logo:hover {
+  transform: scale(1.05);
+}
+
+.category-logo-innodata {
+  height: 110px;
+}
+
+/* Bottom Tier Styling */
+.bottom-tier {
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.partner-logo-wrapper {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.national-partner-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 /* National Tier Styling */
 .national-tier {
   flex-direction: column;
@@ -1530,7 +1585,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
+  height: 120px;
 }
 
 .national-logo {
@@ -1552,7 +1608,13 @@ img {
     gap: 40px;
   }
 
-  .national-logos-group {
+  .top-tier,
+  .bottom-tier {
+    gap: 40px;
+  }
+
+  .national-logos-group,
+  .category-logos-group {
     gap: 30px;
   }
 }
@@ -1567,14 +1629,34 @@ img {
     gap: 40px;
   }
 
-  .national-logos-group {
+  .top-tier,
+  .bottom-tier {
+    gap: 40px;
+    align-items: center;
+  }
+
+  .national-logos-group,
+  .category-logos-group {
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
   }
 
+  .partner-logo-wrapper,
+  .national-logos-group {
+    height: auto;
+  }
+
   .partner-logo {
     height: 70px;
+  }
+
+  .category-logo {
+    height: 60px;
+  }
+
+  .category-logo-innodata {
+    height: 80px;
   }
 
   .national-logo {
