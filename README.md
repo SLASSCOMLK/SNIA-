@@ -1,65 +1,103 @@
-# SLASSCOM National Ingenuity Awards (SNIA) 2026 Website
+# SLASSCOM National Ingenuity Awards (SNIA) 2026 Website (React Migration)
 
-Welcome to the official website repository for the **SLASSCOM National Ingenuity Awards (SNIA) 2026**. This project serves as the digital front door for Sri Lanka's premier platform that celebrates and recognizes technological innovation across various sectors, including corporates, startups, universities, and schools.
+Welcome to the official repository for the **SLASSCOM National Ingenuity Awards (SNIA) 2026**. The codebase has been migrated from a legacy static site to a modern, performant, and responsive single-page application built on **React**, **TypeScript**, **Vite**, and **Tailwind CSS**.
+
+---
 
 ## 🚀 Project Overview
 
-The SNIA 2026 website is designed to provide comprehensive information about the awards, guide applicants through the submission process, and showcase the prestige of the event. It features a modern, responsive design with interactive elements and dynamic animations to engage visitors.
+The website highlights Sri Lanka's premier technology innovation awards. It features interactive components, high-quality media sliders, dynamic filtering for winners, and sponsorship proposal pages.
 
 ### Key Features
-- **Hero Section**: Highlights event details (Date: 16 June 2026, Venue: ITC Ratnadipa, Colombo) with call-to-action buttons for ticket purchasing and sponsorship.
-- **About SNIA**: Details the mission, eligibility criteria, and evaluation process.
-- **What SNIA Does**: Explains the core objectives, such as discovering innovations, evaluating them, amplifying success, building IP, and attracting investments.
-- **Award Categories**: An interactive grid showcasing the 16 different award categories (School, University, Corporate, Startups) with associated entry fees.
-- **Application Guide**: A step-by-step walkthrough of the application process.
-- **Event Highlights & Testimonials**: Showcases past moments and endorsements from previous winners and stakeholders.
-- **Partners Section**: Acknowledges the main organizers, corporate sponsors, process partners, and ecosystem partners.
+- **Hero & Navbar**: Modern, responsive navigation with dark-mode aesthetic, gold accents, and direct call-to-actions.
+- **Interactive About & What We Do**: Visually stunning grid lists and animation highlights.
+- **Award Categories Grid**: Clean showcase of the 16 award categories grouped dynamically.
+- **Dynamic Winners Portal**: Filter past winners by categories and levels (National / Provincial) instantly.
+- **Sponsorship Hub**: Dedicated portal displaying sponsorship benefits, sponsor packages, and tiers.
+- **Partners Slider**: Dynamic logo showcase of sponsors, ecosystem partners, and organizers.
+
+---
 
 ## 📁 Repository Structure
 
-This is a static web application built using HTML, CSS, and vanilla JavaScript. 
+```
+.
+├── legacy-backup/             # Original static HTML/CSS/JS codebase (Archived)
+├── snia-react/                # Active React + TSX codebase
+│   ├── public/                # Static assets (images, logos, slideshow images)
+│   ├── src/
+│   │   ├── assets/            # App-wide visual assets
+│   │   ├── components/        # Reusable React components (Navbar, Footer, Hero, Stats, highlights, etc.)
+│   │   │   └── ui/            # UI components and micro-animations (e.g. gallery-animation)
+│   │   ├── data/              # Static dataset (winners data)
+│   │   ├── pages/             # Page layouts (Home, WinnersPage, SponsorshipPage)
+│   │   ├── App.css            # Styles specific to the React application
+│   │   ├── App.tsx            # Root application layout and routing
+│   │   ├── index.css          # Tailwind CSS directives and theme utilities
+│   │   └── main.tsx           # Entry point
+│   ├── package.json           # Scripts and dependencies
+│   ├── vite.config.ts         # Vite build configuration
+│   └── tailwind.config.js     # Tailwind CSS theme customization
+├── netlify.toml               # Netlify automatic build configuration and SPA redirects
+└── National Winners SNIA.xlsx # Spreadsheet database of national winners
+```
 
-- `index.html`: The main landing page containing all the primary sections (Hero, About, Categories, Apply, etc.).
-- `past-winners.html`: A dedicated page to showcase previous award winners.
-- `National Winners .html`: A page highlighting the national-level winners.
-- `sponsorship.html`: Information and proposal details for potential event sponsors.
-- `styles.css`: The main stylesheet containing the design system, layout rules, animations, and responsive styles.
-- `script.js`: Contains the interactive logic for the website (e.g., custom cursor, mobile menu toggle, category expansion, step-by-step application tabs, and carousels).
-- `images/`: Directory containing all graphical assets, logos, and photographs used across the site.
+---
 
 ## 🛠️ Technologies Used
 
-- **HTML5**: For semantic page structure.
-- **CSS3**: For styling, layout (Flexbox/Grid), and complex animations/transitions.
-- **JavaScript (Vanilla)**: For frontend interactivity.
-- **FontAwesome**: For scalable vector icons.
+* **React 19 & TypeScript**: For scalable component-based architecture and type safety.
+* **Vite**: Ultra-fast bundler and development server.
+* **Tailwind CSS**: Modern utility-first CSS framework for custom layout, micro-animations, and styling.
+* **Lucide React**: Premium icon pack.
+
+---
 
 ## 💻 How to Run Locally
 
-Since this is a static website, no complex build process or server backend is required to view it.
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed (LTS version recommended).
 
-1. **Clone or Download the Repository:**
-   Ensure you have all the files downloaded to your local machine.
-   
-2. **Open in Browser:**
-   Simply double-click the `index.html` file to open it in your default web browser.
+### Setup Instructions
 
-3. **Use a Local Server (Recommended):**
-   To fully experience all features (and avoid any CORS issues if you later fetch local resources), it's best to serve the files using a local development server. 
-   - If using **VS Code**, you can install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension and click "Go Live".
-   - Or, using Python via terminal:
-     ```bash
-     python -m http.server 8000
-     ```
-     Then navigate to `http://localhost:8000` in your browser.
+1. **Navigate to the React application folder:**
+   ```bash
+   cd snia-react
+   ```
+
+2. **Install the dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the local development server:**
+   ```bash
+   npm run dev
+   ```
+   The application will be served at `http://localhost:5173`.
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+   This generates the optimized bundle in `snia-react/dist`.
+
+---
+
+## 🌐 Deployment Configuration
+
+The site is configured to auto-deploy to **Netlify** via git pushes using the root [netlify.toml](file:///d:/SNIA%20WEB%20kavindra/netlify.toml) configuration.
+
+* **Base directory**: `snia-react`
+* **Build command**: `npm run build`
+* **Publish directory**: `dist` (resolves to `snia-react/dist`)
+* **SPA Routing redirects**: All fallback paths are redirected to `index.html` with a `200` status to ensure React Router works correctly on page refreshes.
+
+---
 
 ## 🤝 Contributing
 
-When making updates to the website:
-- Maintain the existing color palette (dark themes, gold accents) defined in `styles.css`.
-- Ensure new sections are fully responsive on mobile, tablet, and desktop views.
-- Compress new images added to the `images/` directory to maintain fast page load speeds.
-
-## 📞 Contact
-
-For inquiries regarding the awards, ticket sales, or sponsorship, please refer to the contact section at the bottom of the `index.html` page or the `sponsorship.html` page.
+When contributing to this repository:
+1. Ensure all your changes are made inside the `snia-react/` directory.
+2. Run `npm run build` locally to verify that there are no type-check or syntax errors prior to committing.
+3. Optimize all images placed in `snia-react/public/` to maintain fast page load times.
