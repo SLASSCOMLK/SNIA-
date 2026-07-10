@@ -374,7 +374,8 @@ img {
   height: 75px;
   width: auto;
   object-fit: contain;
-  transition: height var(--transition-normal);
+  /* Smooth cross-fade when swapping white ↔ colour logo */
+  transition: height var(--transition-normal), opacity 0.2s ease;
 }
 
 .navbar.scrolled .nav-logo-img {
@@ -3126,17 +3127,55 @@ img {
   color: var(--text-muted);
 }
 
-/* ===== ACCESSIBILITY & THEME SYNCS ===== */
+/* ===== NAVBAR THEME SYNC (scroll-aware dark / light) ===== */
+
+/* --- DARK MODE: navbar over dark-themed sections --- */
+.navbar-dark .nav-links a {
+  color: rgba(255, 255, 255, 0.82);
+  transition: color var(--transition-normal);
+}
+
+.navbar-dark .nav-links a:hover {
+  color: #ffffff;
+}
+
+/* Hamburger bars go white on dark sections */
+.navbar-dark .menu-toggle span {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+/* When the user has scrolled AND is over a dark section:
+   replace the white glass background with a deep navy glass */
+.navbar.scrolled.navbar-dark {
+  background: rgba(6, 12, 26, 0.91);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* --- LIGHT MODE: navbar over light-themed sections --- */
+.navbar-light .nav-links a {
+  color: var(--text-secondary);
+  transition: color var(--transition-normal);
+}
+
+.navbar-light .nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.navbar-light .menu-toggle span {
+  background: var(--text-primary);
+}
+
+/* When scrolled + light section: keep the existing white glass (already in .navbar.scrolled) */
+
+/* --- Backward-compat alias (no-op; class removed from JSX) --- */
 .navbar-transparent-dark .nav-links a {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.8);
 }
-
-.navbar-transparent-dark .nav-links a:hover {
-  color: #ffffff !important;
-}
-
 .navbar-transparent-dark .menu-toggle span {
-  background: #ffffff !important;
+  background: #ffffff;
 }
 
 [data-theme="dark"] .hero-meta-item .value {
@@ -3343,4 +3382,279 @@ img {
 
 .contact-details a:hover {
   color: var(--accent-gold, #f47b20);
+}
+
+/* ============================================================
+   VIDEO SHOWCASE SECTION — Liquid Glass Border + Dark Theme
+   ============================================================ */
+
+/* CSS Houdini @property for smooth conic-gradient rotation */
+@property --liquid-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes liquid-rotate {
+  to { --liquid-angle: 360deg; }
+}
+
+@keyframes video-glow-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes video-corner-flash {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.9; }
+}
+
+/* --- Section Container --- */
+.video-showcase-section {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 110px;
+  background: linear-gradient(
+    180deg,
+    #05090f 0%,
+    #08112a 40%,
+    #0a1931 60%,
+    #07101f 100%
+  );
+}
+
+/* Subtle ambient overlay with gold tint */
+.video-showcase-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 60%, rgba(244, 123, 32, 0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 10% 90%,  rgba(0, 74, 153, 0.07)  0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 90% 10%,  rgba(244, 123, 32, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* --- Section Header --- */
+.video-showcase-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.video-showcase-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.video-title-gold {
+  color: var(--accent-gold-light, #FDB813);
+}
+
+.video-showcase-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 55ch;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* --- Outer wrapper (positions glow + corner accents) --- */
+.video-glass-outer {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* Radial glow blob sitting behind the frame */
+.video-ambient-glow {
+  position: absolute;
+  inset: -50px -60px;
+  background: radial-gradient(
+    ellipse 70% 55% at 50% 50%,
+    rgba(244, 123, 32, 0.13) 0%,
+    rgba(253, 184, 19, 0.07) 35%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  animation: video-glow-pulse 4s ease-in-out infinite;
+}
+
+/* --- Liquid Glass Border Frame --- */
+/*
+  Technique:
+  - The frame div itself has the conic-gradient as background (the border "paint")
+  - padding: 2px makes the gradient peek through at that thickness
+  - Inner .video-iframe-inner covers the content area with dark fill
+  - This creates a clean ~2px animated colour border
+*/
+.video-glass-frame {
+  position: relative;
+  border-radius: 18px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--liquid-angle),
+    transparent          0deg,
+    transparent          50deg,
+    rgba(244,123,32,0.1) 80deg,
+    rgba(253,184,19,0.55) 110deg,
+    rgba(244,123,32,0.85) 140deg,
+    rgba(255,255,255,0.92) 180deg,
+    rgba(244,123,32,0.85) 220deg,
+    rgba(253,184,19,0.55) 250deg,
+    rgba(244,123,32,0.1) 280deg,
+    transparent          310deg,
+    transparent          360deg
+  );
+  animation: liquid-rotate 3.5s linear infinite;
+  /* Outer shadow: depth + subtle gold halo */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(244, 123, 32, 0.07);
+}
+
+/* Dark inner fill — sits behind the iframe */
+.video-iframe-inner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #06090f;
+  /* Inset glass highlight at the very top edge */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Responsive 16:9 iframe */
+.video-iframe-inner iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 16px;
+}
+
+/* Frosted top-edge inner highlight line */
+.video-inner-highlight {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(255, 255, 255, 0.14) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* --- Corner accent dots --- */
+.video-corner-tl,
+.video-corner-br {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253,184,19,0.9) 0%, transparent 70%);
+  pointer-events: none;
+  animation: video-corner-flash 3.5s ease-in-out infinite;
+}
+
+.video-corner-tl {
+  top: -3px;
+  left: -3px;
+  animation-delay: 0s;
+}
+
+.video-corner-br {
+  bottom: -3px;
+  right: -3px;
+  animation-delay: 1.75s;
+}
+
+/* --- Watch CTA row --- */
+.video-cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.video-watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  text-decoration: none;
+}
+
+.video-watch-btn:hover {
+  color: var(--accent-gold-light, #FDB813);
+  border-color: rgba(253, 184, 19, 0.35);
+  background: rgba(253, 184, 19, 0.07);
+}
+
+.video-watch-btn:active {
+  transform: scale(0.98);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .video-showcase-section {
+    padding: 72px 0 80px;
+  }
+  .video-showcase-header {
+    margin-bottom: 40px;
+  }
+  .video-showcase-title {
+    font-size: 1.65rem;
+  }
+  .video-glass-outer {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-showcase-title {
+    font-size: 1.45rem;
+  }
+  .video-showcase-subtitle {
+    font-size: 0.9375rem;
+  }
+}
+
+/* --- Reduced motion: static gradient border, no animation --- */
+@media (prefers-reduced-motion: reduce) {
+  .video-glass-frame {
+    animation: none;
+    background: linear-gradient(
+      135deg,
+      rgba(244, 123, 32, 0.5) 0%,
+      rgba(253, 184, 19, 0.7) 25%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(253, 184, 19, 0.7) 75%,
+      rgba(244, 123, 32, 0.5) 100%
+    );
+  }
+  .video-ambient-glow,
+  .video-corner-tl,
+  .video-corner-br {
+    animation: none;
+  }
 }

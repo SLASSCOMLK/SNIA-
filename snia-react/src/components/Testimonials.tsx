@@ -27,7 +27,13 @@ export const Testimonials: React.FC = () => {
       role: 'COO',
       company: 'Spectrify AI',
       quote: 'Winning 4 awards was an honor, made even more special by the exceptional event experience. Seamless organization, perfect timing, and outstanding execution showcased the professionalism and excellence behind the SLASSCOM Ingenuity Awards.'
-    }
+    },
+    {
+      name: 'Dr. Dhanushi Hettiarachchi',
+      role: 'Chief Executive Officer and Co-Founder',
+      company: 'Ophtha Innovations (Pvt.) Ltd',
+      quote: 'SLASSCOM has been more than a platform in my journey , it has been a catalyst. Being recognized as Woman Technopreneur of the Year 2026 strengthened my mission to prevent avoidable blindness, starting from Sri Lanka. I am especially grateful to SLASSCOM for opening doors such as the IITM Pravartak program and for genuinely empowering women entrepreneurs creating real impact.'
+    },
   ];
 
   const [activeQuote, setActiveQuote] = useState<Testimonial | null>(null);
